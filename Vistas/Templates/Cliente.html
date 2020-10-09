@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% include "Encabezado.html" %}
+  </head>
+  <body>
+    <form>
+  <div class="form-group">
+    <label for="Nombre"> Nombre: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Direccion"> Direccion: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Telefono"> Telefono: </label>
+    <input type="tel" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Correo"> Correo: </label>
+    <input type="email" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Apellido Paterno"> Apellido Paterno: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Apellido Materno"> Apellido Materno: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Sexo"> Sexo: </label>
+    <label class="radio-inline"><input type="radio" name="optradio"> Masculino </label>
+    <label class="radio-inline"><input type="radio" name="optradio"> Femenino </label>
+  </div>
+  <div class="form-group">
+    <label for="FechaNacimiento"> Fecha Nacimiento: </label>
+    <input type="date" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  {% include "Pie.html" %}
+  </body>
+</html>

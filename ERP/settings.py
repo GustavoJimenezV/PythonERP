@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STATICFILES_DIRS = ['C:/Users/dmx_g/Desktop/PROYECTO/DJANGO/ERP/Vistas/Templates/static']
 
 # Application definition
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Vistas',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,7 @@ ROOT_URLCONF = 'ERP.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['C:/Users/dmx_g/Desktop/PROYECTO/DJANGO/ERP/Vistas/Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

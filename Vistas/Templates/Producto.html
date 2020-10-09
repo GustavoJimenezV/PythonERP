@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% include "Encabezado.html" %}
+  </head>
+  <body>
+    <form>
+  <div class="form-group">
+    <label for="Nombre"> Nombre: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Descripcion"> Descripcion: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="PrecioV"> Precio Venta: </label>
+    <input type="number" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Precio C"> Precio Compra: </label>
+    <input type="number" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Cantidad"> Cantidad: </label>
+    <input type="number" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="CantMin"> Cantidad Minima: </label>
+    <input type="number" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="CantMax"> Cantidad Maxima: </label>
+    <input type="number" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Categoria"> Categoria: </label>
+    <input type="text" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  {% include "Pie.html" %}
+  </body>
+</html>

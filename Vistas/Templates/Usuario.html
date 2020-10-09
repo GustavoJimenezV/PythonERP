@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% include "Encabezado.html" %}
+  </head>
+  <body>
+    <form>
+  <div class="form-group">
+    <label for="Nombre"> Nombre: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Tipo"> Tipo: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Password"> Password: </label>
+    <input type="password" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  {% include "Pie.html" %}
+  </body>
+</html>

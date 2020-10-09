@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% include "Encabezado.html" %}
+  </head>
+  <body>
+    <form>
+  <div class="form-group">
+    <label for="Nombre"> Nombre: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="ApellidoPaterno"> Apellido Paterno: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="ApellidoMaterno"> Apellido Materno: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Correo"> Correo: </label>
+    <input type="email" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Rfc"> Rfc: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Telefono"> Telefono: </label>
+    <input type="tel" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Sexo"> Sexo: </label>
+    <label class="radio-inline"><input type="radio" name="optradio"> Masculino </label>
+    <label class="radio-inline"><input type="radio" name="optradio"> Femenino </label>
+  </div>
+  <div class="form-group">
+    <label for="FechaIngreso"> Fecha Ingreso: </label>
+    <input type="date" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Cargo"> Cargo: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="Salario"> Salario: </label>
+    <input type="number" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="EstadoCivil"> EstadoCivil: </label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="NSS"> NSS: </label>
+    <input type="text" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  {% include "Pie.html" %}
+  </body>
+</html>
