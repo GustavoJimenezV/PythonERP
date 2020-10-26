@@ -4,42 +4,73 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="Nombre"> Nombre: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Direccion"> Direccion: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Telefono"> Telefono: </label>
-    <input type="tel" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Correo"> Correo: </label>
-    <input type="email" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Apellido Paterno"> Apellido Paterno: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Apellido Materno"> Apellido Materno: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Sexo"> Sexo: </label>
-    <label class="radio-inline"><input type="radio" name="optradio"> Masculino </label>
-    <label class="radio-inline"><input type="radio" name="optradio"> Femenino </label>
-  </div>
-  <div class="form-group">
-    <label for="FechaNacimiento"> Fecha Nacimiento: </label>
-    <input type="date" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-  {% include "Pie.html" %}
+      {% include "menu.html" %}
+      <section>
+        <h3>Persona</h3>
+    <form action="CrearCliente/" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        Nombre: <input type="text" name="Nombre" class="form-control"> <br>
+      </div>
+      <div class="form-group">
+        Apellido Paterno: <input type="text" name="ApellidoP" class="form-control"><br>
+      </div>
+      <div class="form-group">
+        Apellido Materno: <input type="text" name="ApellidoM"class="form-control"><br>
+      </div>
+      <div class="form-group">
+        Direccion:<input type="text" name="Direccion" class="form-control"><br>
+      </div>
+      <div class="form-group">
+        Telefono: <input type="tel" name="Telefono" class="form-control"><br>
+      </div>
+      <div class="form-group">
+        Correo: <input type="email" name="Correo" class="form-control"><br>
+      </div>
+      <div class="form-group">
+        <!--<label> Sexo: </label><br>
+        <label class="radio-inline"><input type="radio" name="Sexo"> Masculino </label>
+        <label class="radio-inline"><input type="radio" name="Sexo"> Femenino </label>-->
+        Sexo: <input type="text" name="Sexo"class="form-control"><br>
+      </div>
+      <div class="form-group">
+        Fecha de Nacimiento: <input type="date" name="FechaNacimiento" class="form-control"><br>
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Usuario</button>
+      </form>
+      {% if error %}
+      <h3>Debes mandar datos</h3>
+      {% endif %}
+
+      {% if agregado %}
+      <h3>Cliente Agregado</h3>
+      {% endif %}
+    </form>
+      <table>
+        <tr>
+          <th>Nombre</th>
+          <th>Direccion</th>
+          <th>Telefono</th>
+          <th>Correo</th>
+          <th>Apellido Paterno</th>
+          <th>Apellido Materno</th>
+          <th>Sexo</th>
+          <th>FechadeNacimiento</th>
+        </tr>
+        {% for fila in personas %}
+      <tr>
+        <td>{{ fila.Nombre}}</td>
+        <td>{{ fila.Direccion}}</td>
+        <td>{{ fila.Telefono}}</td>
+        <td>{{ fila.Correo}}</td>
+        <td>{{ fila.ApellidoPaterno}}</td>
+        <td>{{ fila.ApellidoMaterno}}</td>
+        <td>{{ fila.Sexo}}</td>
+        <td>{{ fila.FechadeNacimiento}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    </section>
+    {% include "Pie.html" %}
   </body>
 </html>

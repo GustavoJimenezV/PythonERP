@@ -2,7 +2,22 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Template,Context
 from django.template import loader
+from Vistas.models import Usuario,Cliente
 # Create your views here.
+def Login(request):
+    if request.GET :
+        Nombre=request.GET["Nombre"]
+        Tipo=request.GET["Tipo"]
+        Password = request.GET["Password"]
+        objeto = Usuario.objects.filter(Nombre=Nombre,Tipo=Tipo,Password=Password)
+        if objeto:
+            return render(request,"Home.html")
+        else:
+            return render(request,"Login.html",{"error":"si"})
+    else:
+        return render(request,"Login.html")
+
+
 def Actividad(request):
     DocExterno = loader.get_template("Actividad.html")
     Documento = DocExterno.render()
@@ -18,10 +33,27 @@ def Balance(request):
     Documento = DocExterno.render()
     return HttpResponse(Documento)
 
-def Cliente(request):
+def MenuCliente(request):
     DocExterno = loader.get_template("Cliente.html")
     Documento = DocExterno.render()
     return HttpResponse(Documento)
+
+def CrearCliente(request):
+    if request.POST:
+        objeto = Cliente()
+        objeto.Nombre = request.POST["Nombre"]
+        objeto.ApellidoM = request.POST["ApellidoP"]
+        objeto.ApellidoP = request.POST["ApellidoM"]
+        objeto.Direccion = request.POST["Direccion"]
+        objeto.Telefono = request.POST["Telefono"]
+        objeto.Correo = request.POST["Correo"]
+        objeto.Sexo = request.POST["Sexo"]
+        objeto.FechaNacimiento = request.POST["FechaNacimiento"]
+        objeto.save()
+        return render(request,"Cliente.html",{"agregado":"si"})
+    else:
+        return render(request,"Cliente.html",{"error":"si"})
+
 
 def Compra(request):
     DocExterno = loader.get_template("Compra.html")
@@ -100,11 +132,6 @@ def Proyecto(request):
 
 def Remplazo(request):
     DocExterno = loader.get_template("Remplazo.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
-
-def Usuario(request):
-    DocExterno = loader.get_template("Usuario.html")
     Documento = DocExterno.render()
     return HttpResponse(Documento)
 

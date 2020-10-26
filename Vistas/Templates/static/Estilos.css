@@ -10,3 +10,75 @@ body{
   color: black;
   padding: 3rem;
 }
+
+form{
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px #444;
+	color: black;
+	margin: 0 auto;
+	padding: 2em;
+	text-align: center;
+	width: 70%;
+}
+footer{
+	margin: 3em;
+	text-align: center;
+}
+input{
+	font-size: 1em;
+	margin: 0.3rem;
+	padding: 0.4rem;
+}
+input[type="text"],input[type="password"],input[type="date"],input[type="number"],input[type="email"],input[type="tel"]{
+	border: 1px solid steelblue;
+	border-radius: 5px;
+}
+input[type="submit"]{
+	background-color: steelblue;
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+	padding: 0.7em;
+}
+section{
+	display: inline-block;
+	vertical-align: top;
+	width: 70%;
+}
+nav{
+	background-color: #333;
+	display: inline-block;
+	height: 100vh;
+	vertical-align: top;
+	width: 20%;
+}
+nav a{
+	border-bottom: 1px solid white;
+	color: white;
+	display: inline-block;
+	padding: 0.4em;
+	text-decoration: none;
+	width: 80%;
+}
+
+table{
+	margin: 1em auto;
+	width: 80%;
+}
+th{
+	background-color: #ddf;
+	color: black;
+	padding: 0.3em;
+}
+td{
+	padding: 0.3em;
+}
+tr:nth-child(odd){
+	background-color: #006;
+	color: white;
+}
+tr:nth-child(even){
+	background-color: white;
+	color: black;
+}
