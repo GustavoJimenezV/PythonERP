@@ -49,22 +49,22 @@
       <table>
         <tr>
           <th>Nombre</th>
+          <th>Apellido Paterno</th>
+          <th>Apellido Materno</th>
           <th>Direccion</th>
           <th>Telefono</th>
           <th>Correo</th>
-          <th>Apellido Paterno</th>
-          <th>Apellido Materno</th>
           <th>Sexo</th>
           <th>FechadeNacimiento</th>
         </tr>
         {% for fila in personas %}
       <tr>
         <td>{{ fila.Nombre}}</td>
+        <td>{{ fila.ApellidoPaterno}}</td>
+        <td>{{ fila.ApellidoMaterno}}</td>
         <td>{{ fila.Direccion}}</td>
         <td>{{ fila.Telefono}}</td>
         <td>{{ fila.Correo}}</td>
-        <td>{{ fila.ApellidoPaterno}}</td>
-        <td>{{ fila.ApellidoMaterno}}</td>
         <td>{{ fila.Sexo}}</td>
         <td>{{ fila.FechadeNacimiento}}</td>
       </tr>
