@@ -24,7 +24,6 @@ urlpatterns = [
     path('Asistencia/',views.Asistencia),
     path('Balance/',views.Balance),
     path('MenuCliente/',views.MenuCliente),
-    path('MenuCliente/CrearCliente/',views.CrearCliente),
     path('Compra/',views.Compra),
     path('DetalleCompra/',views.DetalleCompra),
     path('Devoluciones/',views.Devoluciones),

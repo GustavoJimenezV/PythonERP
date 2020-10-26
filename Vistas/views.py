@@ -34,11 +34,6 @@ def Balance(request):
     return HttpResponse(Documento)
 
 def MenuCliente(request):
-    DocExterno = loader.get_template("Cliente.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
-
-def CrearCliente(request):
     if request.POST:
         objeto = Cliente()
         objeto.Nombre = request.POST["Nombre"]
@@ -50,9 +45,11 @@ def CrearCliente(request):
         objeto.Sexo = request.POST["Sexo"]
         objeto.FechaNacimiento = request.POST["FechaNacimiento"]
         objeto.save()
-        return render(request,"Cliente.html",{"agregado":"si"})
+        clientes = Cliente.objects.all()
+        return render(request,"Cliente.html",{"agregado":"si","clientes":clientes})
     else:
-        return render(request,"Cliente.html",{"error":"si"})
+        clientes = Cliente.objects.all()
+        return render(request,"Cliente.html",{"clientes":clientes})
 
 
 def Compra(request):
