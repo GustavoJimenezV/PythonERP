@@ -19,10 +19,12 @@ from Vistas import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.Login),
     path('Actividad/',views.Actividad),
     path('Asistencia/',views.Asistencia),
     path('Balance/',views.Balance),
-    path('Cliente/',views.Cliente),
+    path('MenuCliente/',views.MenuCliente),
+    path('MenuCliente/CrearCliente/',views.CrearCliente),
     path('Compra/',views.Compra),
     path('DetalleCompra/',views.DetalleCompra),
     path('Devoluciones/',views.Devoluciones),

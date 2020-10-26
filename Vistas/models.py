@@ -1,15 +1,22 @@
 from django.db import models
 
 # Create your models here.
+
 class Actividad (models.Model):
-    Registro = models.CharField(max_length=20)
     IdUsuario = models.IntegerField(default=0)
+    Registro = models.CharField(max_length=20)
     MovimientoAct = models.CharField(max_length=20)
     MovimientoTabla = models.CharField(max_length=20)
+    class Meta:
+        verbose_name = 'Actividad'
+        verbose_name_plural = 'Actividades'
+        ordering = ['Registro']
+    def __str__(self):
+        return self.Registro
 
 class Asistencia (models.Model):
-    Fecha = models.DateField
     Idempleado = models.IntegerField(default=0)
+    Fecha = models.DateField
     Hora = models.TimeField
 
 class Balance (models.Model):
@@ -19,19 +26,25 @@ class Balance (models.Model):
 
 class Cliente (models.Model):
     Nombre = models.CharField(max_length=20)
+    ApellidoP = models.CharField(max_length=15)
+    ApellidoM = models.CharField(max_length=15)
     Direccion = models.CharField(max_length=50)
     Telefono = models.IntegerField(default=0)
     Correo = models.EmailField(max_length=20)
-    ApellidoM = models.CharField(max_length=15)
-    ApellidoP = models.CharField(max_length=15)
     Sexo = models.CharField(max_length=10)
     FechaNacimiento = models.DateField
+    class Meta:
+        verbose_name = 'Cliente'
+        verbose_name_plural = 'Clientes'
+        ordering = ['Nombre']
+    def __str__(self):
+        return self.Nombre
 
 class Compra (models.Model):
+    IdCliente = models.IntegerField(default=0)
     Fecha = models.DateField
     Total = models.FloatField(default=0)
     TipoPago = models.CharField(max_length=20)
-    IdCliente = models.IntegerField(default=0)
 
 class DetalleCompra (models.Model):
     IdMateriaPrima = models.IntegerField(default=0)
