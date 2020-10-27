@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime,date
 
 # Create your models here.
 
@@ -16,12 +17,12 @@ class Actividad (models.Model):
 
 class Asistencia (models.Model):
     Idempleado = models.IntegerField(default=0)
-    Fecha = models.DateField
-    Hora = models.TimeField
+    Fecha = models.DateField()
+    Hora = models.TimeField(auto_now_add=False, auto_now=False)
 
 class Balance (models.Model):
-    FechaInicio = models.DateField
-    FechaFinal = models.DateField
+    FechaInicio = models.DateField()
+    FechaFinal = models.DateField()
     Total = models.FloatField(default=0)
 
 class Cliente (models.Model):
@@ -32,7 +33,7 @@ class Cliente (models.Model):
     Telefono = models.IntegerField(default=0)
     Correo = models.EmailField(max_length=20)
     Sexo = models.CharField(max_length=10)
-    FechaNacimiento = models.DateField
+    FechaNacimiento = models.DateField()
     class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
@@ -42,7 +43,7 @@ class Cliente (models.Model):
 
 class Compra (models.Model):
     IdCliente = models.IntegerField(default=0)
-    Fecha = models.DateField
+    Fecha = models.DateField()
     Total = models.FloatField(default=0)
     TipoPago = models.CharField(max_length=20)
 
@@ -52,7 +53,7 @@ class DetalleCompra (models.Model):
     Cantidad = models.FloatField(default=0)
 
 class Devoluciones (models.Model):
-    Fecha = models.DateField
+    Fecha = models.DateField()
     Cantidad = models.IntegerField(default=0)
     Descripcion = models.TextField(max_length=100)
     IdProducto = models.IntegerField(default=0)
@@ -65,11 +66,17 @@ class Empleado (models.Model):
     Rfc = models.CharField(max_length=25)
     Telefono = models.IntegerField(default=0)
     Sexo = models.CharField(max_length=10)
-    FechaIngreso = models.DateField
+    FechaIngreso = models.DateField()
     Cargo = models.CharField(max_length=20)
     Salario = models.IntegerField(default=0)
     EstadoCivil = models.CharField(max_length=15)
     Nss = models.CharField(max_length=15)
+    class Meta:
+        verbose_name = 'Empleado'
+        verbose_name_plural = 'Empleados'
+        ordering = ['Nombre']
+    def __str__(self):
+        return self.Nombre
 
 class Evaluacion (models.Model):
     Tipo = models.CharField(max_length=20)
@@ -93,7 +100,7 @@ class Jornada (models.Model):
     IdEmpleado = models.IntegerField(default=0)
 
 class Mantenimiento (models.Model):
-    FechaMan = models.DateField
+    FechaMan = models.DateField()
     Area = models.CharField(max_length=20)
     IdMob = models.IntegerField(default=0)
     CostoMan = models.FloatField(default=0)
@@ -117,19 +124,19 @@ class Mobiliario (models.Model):
 class Pago (models.Model):
     IdEmpleado = models.IntegerField(default=0)
     Sal = models.IntegerField(default=0)
-    FechaDep = models.DateField
+    FechaDep = models.DateField()
     MetodoPago = models.CharField(max_length=30)
     Des = models.CharField(max_length=30)
 
 class Pedido (models.Model):
-    Fecha = models.DateField
+    Fecha = models.DateField()
     IdCliente = models.IntegerField(default=0)
     Precio = models.FloatField(default=0)
     Cantidad = models.FloatField(default=0)
     Direccion = models.CharField(max_length=50)
     IdProducto = models.IntegerField(default=0)
 
-class Permisos (models.Model):
+class Permiso (models.Model):
     IdUsuario = models.IntegerField(default=0)
     ActPermiso = models.BooleanField('Activada/No Activada', default = False)
     ActConsulta = models.BooleanField('Activada/No Activada', default = False)
@@ -195,23 +202,29 @@ class Proyecto (models.Model):
     NombrePro = models.CharField(max_length=20)
     TipoPro = models.CharField(max_length=20)
     IdEmpleado = models.IntegerField(default=0)
-    FechaIn = models.DateField
-    FechaFin = models.DateField
+    FechaIn = models.DateField()
+    FechaFin = models.DateField()
     Descripcion = models.CharField(max_length=30)
 
 class Remplazo (models.Model):
     IdMobiliario = models.IntegerField(default=0)
-    Fecha = models.DateField
+    Fecha = models.DateField()
     Costo = models.FloatField(default=0)
     Descripcion = models.CharField(max_length=200)
 
 class Usuario (models.Model):
     Nombre = models.CharField(max_length=50)
-    Tipo = models.IntegerField(default=0)
     Password = models.CharField(max_length=20)
+    Tipo = models.IntegerField(default=0)
+    class Meta:
+        verbose_name = 'Usuario'
+        verbose_name_plural = 'Usuarios'
+        ordering = ['Nombre']
+    def __str__(self):
+        return self.Nombre
 
 class Venta (models.Model):
-    Fecha = models.DateField
+    Fecha = models.DateField()
     IdCliente = models.IntegerField(default=0)
     Total = models.FloatField(default=0)
     TipoPago = models.IntegerField(default=0)

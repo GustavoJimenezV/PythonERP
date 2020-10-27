@@ -2,13 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Template,Context
 from django.template import loader
-from Vistas.models import Usuario,Cliente
+from Vistas.models import Usuario,Cliente,Empleado,Proveedor
 # Create your views here.
 def Login(request):
     if request.GET :
         Nombre=request.GET["Nombre"]
-        Tipo=request.GET["Tipo"]
         Password = request.GET["Password"]
+        Tipo=request.GET["Tipo"]
         objeto = Usuario.objects.filter(Nombre=Nombre,Tipo=Tipo,Password=Password)
         if objeto:
             return render(request,"Home.html")
@@ -67,10 +67,27 @@ def Devoluciones(request):
     Documento = DocExterno.render()
     return HttpResponse(Documento)
 
-def Empleado(request):
-    DocExterno = loader.get_template("Empleado.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuEmpleado(request):
+    if request.POST:
+        objeto = Empleado()
+        objeto.Nombre = request.POST["Nombre"]
+        objeto.ApellidoP = request.POST["ApellidoP"]
+        objeto.ApellidoM = request.POST["ApellidoM"]
+        objeto.Correo = request.POST["Correo"]
+        objeto.Rfc = request.POST["Rfc"]
+        objeto.Telefono = request.POST["Telefono"]
+        objeto.Sexo = request.POST["Sexo"]
+        objeto.FechaIngreso = request.POST["FechaIngreso"]
+        objeto.Cargo = request.POST["Cargo"]
+        objeto.Salario = request.POST["Salario"]
+        objeto.EstadoCivil = request.POST["EstadoCivil"]
+        objeto.Nss = request.POST["Nss"]
+        objeto.save()
+        empleados = Empleado.objects.all()
+        return render(request,"Empleado.html",{"agregado":"si","empleados":empleados})
+    else:
+        empleados = Empleado.objects.all()
+        return render(request,"Empleado.html",{"empleados":empleados})
 
 def Evaluacion(request):
     DocExterno = loader.get_template("Evaluacion.html")
@@ -107,8 +124,8 @@ def Pedido(request):
     Documento = DocExterno.render()
     return HttpResponse(Documento)
 
-def Permisos(request):
-    DocExterno = loader.get_template("Permisos.html")
+def Permiso(request):
+    DocExterno = loader.get_template("Permiso.html")
     Documento = DocExterno.render()
     return HttpResponse(Documento)
 
@@ -117,10 +134,20 @@ def Producto(request):
     Documento = DocExterno.render()
     return HttpResponse(Documento)
 
-def Proveedor(request):
-    DocExterno = loader.get_template("Proveedor.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuProveedor(request):
+    if request.POST:
+        objeto = Proveedor()
+        objeto.Nombre = request.POST["Nombre"]
+        objeto.Telefono = request.POST["Telefono"]
+        objeto.Direccion = request.POST["Direccion"]
+        objeto.Correo = request.POST["Correo"]
+        objeto.Rfc = request.POST["Rfc"]
+        objeto.save()
+        proveedores = Proveedor.objects.all()
+        return render(request,"Proveedor.html",{"agregado":"si","proveedores":proveedores})
+    else:
+        proveedores = Proveedor.objects.all()
+        return render(request,"Proveedor.html",{"proveedores":proveedores})
 
 def Proyecto(request):
     DocExterno = loader.get_template("Proyecto.html")
@@ -131,6 +158,17 @@ def Remplazo(request):
     DocExterno = loader.get_template("Remplazo.html")
     Documento = DocExterno.render()
     return HttpResponse(Documento)
+
+def CrearUsuario(request):
+    if request.POST:
+        objeto = Usuario()
+        objeto.Nombre = request.POST["Nombre"]
+        objeto.Password = request.POST["Password"]
+        objeto.Tipo = request.POST["Tipo"]
+        objeto.save()
+        return render(request,"Login.html",{"agregado":"si"})
+    else:
+        return render(request,"Usuario.html")
 
 def Venta(request):
     DocExterno = loader.get_template("Venta.html")
