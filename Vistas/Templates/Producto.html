@@ -4,41 +4,69 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="Nombre"> Nombre: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Descripcion"> Descripcion: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="PrecioV"> Precio Venta: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Precio C"> Precio Compra: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Cantidad"> Cantidad: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="CantMin"> Cantidad Minima: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="CantMax"> Cantidad Maxima: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Categoria"> Categoria: </label>
-    <input type="text" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {% include "menu.html" %}
+<section>
+      <h3>Producto</h3>
+      <form action="" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+      Nombre: <input type="text" name="Nombre" class="form-control">
+      </div>
+      <div class="form-group">
+      Descripcion: <input type="text" name="Descripcion" class="form-control">
+      </div>
+      <div class="form-group">
+      Precio de Venta: <input type="number" name="PrecioVenta" class="form-control">
+      </div>
+      <div class="form-group">
+      Precio de Compra: <input type="number" name="PrecioCompra"class="form-control">
+      </div>
+      <div class="form-group">
+      Cantidad: <input type="number" name="Cantidad" class="form-control">
+      </div>
+      <div class="form-group">
+      Cantidad Minima: <input type="number" name="CantidadMin"class="form-control">
+      </div>
+      <div class="form-group">
+      Cantidad Maxima: <input type="number" name="CantidadMax"class="form-control">
+      </div>
+      <div class="form-group">
+      Categoria: <input type="text" name="Categoria" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Producto</button>
+
+      {% if error %}
+        <h3>Debes completar los datos</h3>
+      {% endif %}
+
+      {% if agregado %}
+        <h3>Producto Agregado</h3>
+      {% endif %}
+      </form>
+    <table>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Precio de Venta</th>
+          <th>Precio de Compra</th>
+          <th>Cantidad</th>
+          <th>Cantidad Minima</th>
+          <th>Cantidad Maxima</th>
+          <th>Categoria</th>
+        </tr>
+          {% for fila in productos %}
+        <tr>
+          <td>{{ fila.Nombre}}</td>
+          <td>{{ fila.Descripcion}}</td>
+          <td>{{ fila.PrecioV}}</td>
+          <td>{{ fila.PrecioC}}</td>
+          <td>{{ fila.CantMin}}</td>
+          <td>{{ fila.CantMax}}</td>
+          <td>{{ fila.Categoria}}</td>
+        </tr>
+          {% endfor %}
+    </table>
+</section>
   {% include "Pie.html" %}
   </body>
 </html>

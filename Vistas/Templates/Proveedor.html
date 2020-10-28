@@ -5,33 +5,34 @@
   </head>
   <body>
       {% include "menu.html" %}
-      <section>
-        <h3>Proveedor</h3>
-    <form class="" method="post">
-  <div class="form-group">
-    Nombre:<input type="text" name="Nombre" class="form-control">
-  </div>
-  <div class="form-group">
-    Telefono: <input type="tel" name="Telefono" class="form-control">
-  </div>
-  <div class="form-group">
-    Direccion: <input type="text" name="Direccion" class="form-control">
-  </div>
-  <div class="form-group">
-    Correo: <input type="email" name="Correo"class="form-control">
-  </div>
-  <div class="form-group">
-    RFC: <input type="text" name="Rfc" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Agregar Proveedor</button>
-  {% if error %}
-  <h3>Debes mandar datos</h3>
-  {% endif %}
+<section>
+      <h3>Proveedor</h3>
+      <form class="" method="post">
+      <div class="form-group">
+      Nombre:<input type="text" name="Nombre" class="form-control">
+      </div>
+      <div class="form-group">
+      Telefono: <input type="tel" name="Telefono" class="form-control">
+      </div>
+      <div class="form-group">
+      Direccion: <input type="text" name="Direccion" class="form-control">
+      </div>
+      <div class="form-group">
+      Correo: <input type="email" name="Correo"class="form-control">
+      </div>
+      <div class="form-group">
+      RFC: <input type="text" name="Rfc" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Agregar Proveedor</button>
 
-  {% if agregado %}
-  <h3>Proveedor Agregado</h3>
-  {% endif %}
-  </form>
+    {% if error %}
+      <h3>Debes mandar datos</h3>
+    {% endif %}
+
+    {% if agregado %}
+      <h3>Proveedor Agregado</h3>
+    {% endif %}
+      </form>
   <table>
     <tr>
       <th>Nombre</th>
@@ -48,7 +49,7 @@
       <td>{{ fila.Correo}}</td>
       <td>{{ fila.Rfc}}</td>
     </tr>
-{% endfor %}
+  {% endfor %}
   </table>
 </section>
   {% include "Pie.html" %}

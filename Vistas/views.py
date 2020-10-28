@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Template,Context
 from django.template import loader
-from Vistas.models import Usuario,Cliente,Empleado,Proveedor
+from Vistas.models import Usuario,Cliente,Empleado,Proveedor,Venta,Remplazo,Proyecto,Producto
 # Create your views here.
 def Login(request):
     if request.GET :
@@ -129,10 +129,23 @@ def Permiso(request):
     Documento = DocExterno.render()
     return HttpResponse(Documento)
 
-def Producto(request):
-    DocExterno = loader.get_template("Producto.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuProducto(request):
+    if request.POST:
+        objeto = Producto()
+        objeto.Nombre = request.POST["Nombre"]
+        objeto.Descripcion = request.POST["Descripcion"]
+        objeto.PrecioV = request.POST["PrecioVenta"]
+        objeto.PrecioC = request.POST["PrecioCompra"]
+        objeto.CantMin = request.POST["CantidadMin"]
+        objeto.CantMax = request.POST["CantidadMax"]
+        objeto.Categoria = request.POST["Categoria"]
+        objeto.save()
+        productos = Producto.objects.all()
+        return render(request,"Producto.html",{"agregado":"si","productos":productos})
+    else:
+        productos = Producto.objects.all()
+        return render(request,"Producto.html",{"productos":productos})
+
 
 def MenuProveedor(request):
     if request.POST:
@@ -149,15 +162,35 @@ def MenuProveedor(request):
         proveedores = Proveedor.objects.all()
         return render(request,"Proveedor.html",{"proveedores":proveedores})
 
-def Proyecto(request):
-    DocExterno = loader.get_template("Proyecto.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuProyecto(request):
+    if request.POST:
+        objeto = Proyecto()
+        objeto.NombrePro = request.POST["NombrePro"]
+        objeto.TipoPro = request.POST["TipoProyecto"]
+        objeto.IdEmpleado = request.POST["IdEmpleado"]
+        objeto.FechaIn = request.POST["FechaInicio"]
+        objeto.FechaFin = request.POST["FechaFinal"]
+        objeto.Descripcion = request.POST["Descripcion"]
+        objeto.save()
+        proyectos = Proyecto.objects.all()
+        return render(request,"Proyecto.html",{"agregado":"si","proyectos":proyectos})
+    else:
+        proyectos = Proyecto.objects.all()
+        return render(request,"Proyecto.html",{"proyectos":proyectos})
 
-def Remplazo(request):
-    DocExterno = loader.get_template("Remplazo.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuRemplazo(request):
+    if request.POST:
+        objeto = Remplazo()
+        objeto.IdMobiliario = request.POST["IdMobiliario"]
+        objeto.Fecha = request.POST["Fecha"]
+        objeto.Costo = request.POST["Costo"]
+        objeto.Descripcion = request.POST["Descripcion"]
+        objeto.save()
+        remplazos = Remplazo.objects.all()
+        return render(request,"Remplazo.html",{"agregado":"si","remplazos":remplazos})
+    else:
+        remplazos = Remplazo.objects.all()
+        return render(request,"Remplazo.html",{"remplazos":remplazos})
 
 def CrearUsuario(request):
     if request.POST:
@@ -170,7 +203,16 @@ def CrearUsuario(request):
     else:
         return render(request,"Usuario.html")
 
-def Venta(request):
-    DocExterno = loader.get_template("Venta.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuVenta(request):
+    if request.POST:
+        objeto = Venta()
+        objeto.Fecha = request.POST["Fecha"]
+        objeto.IdCliente = request.POST["IdCliente"]
+        objeto.Total = request.POST["Total"]
+        objeto.TipoPago = request.POST["TipoPago"]
+        objeto.save()
+        ventas = Venta.objects.all()
+        return render(request,"Venta.html",{"agregado":"si","ventas":ventas})
+    else:
+        ventas = Venta.objects.all()
+        return render(request,"Venta.html",{"ventas":ventas})

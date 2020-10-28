@@ -5,57 +5,58 @@
   </head>
   <body>
       {% include "menu.html" %}
-      <section>
-        <h3>Empleado</h3>
-  <form class="" method="post">
-  <div class="form-group">
-    Nombre: <input type="text" name="Nombre" class="form-control">
-  </div>
-  <div class="form-group">
-    Apellido Paterno: <input type="text" name="ApellidoP"class="form-control">
-  </div>
-  <div class="form-group">
-    Apellido Materno: <input type="text" name="ApellidoM"class="form-control">
-  </div>
-  <div class="form-group">
-    Correo: <input type="email" name="Correo" class="form-control">
-  </div>
-  <div class="form-group">
-    RFC: <input type="text" name="Rfc" class="form-control">
-  </div>
-  <div class="form-group">
-    Telefono: <input type="tel" name="Telefono"class="form-control">
-  </div>
-  <div class="form-group">
-    <!--<label for="Sexo"> Sexo: </label>
-    <label class="radio-inline"><input type="radio" name="optradio"> Masculino </label>
-    <label class="radio-inline"><input type="radio" name="optradio"> Femenino </label>-->
-    Sexo: <input type="text" name="Sexo" class="form-control">
-  </div>
-  <div class="form-group">
-    Fecha Ingreso: <input type="date" name="FechaIngreso" class="form-control">
-  </div>
-  <div class="form-group">
-    Cargo: <input type="text" name="Cargo" class="form-control">
-  </div>
-  <div class="form-group">
-    Salario: <input type="number" name="Salario" class="form-control">
-  </div>
-  <div class="form-group">
-    Estado Civil: <input type="text" name="EstadoCivil" class="form-control">
-  </div>
-  <div class="form-group">
-    NSS: <input type="text" name="Nss" class="form-control">
-  </div>
-    <button type="submit" class="btn btn-primary">Agregar Empleado</button>
-  {% if error %}
-  <h3>Debes mandar datos</h3>
-  {% endif %}
+<section>
+      <h3>Empleado</h3>
+      <form class="" method="post">
+      <div class="form-group">
+      Nombre: <input type="text" name="Nombre" class="form-control">
+      </div>
+      <div class="form-group">
+      Apellido Paterno: <input type="text" name="ApellidoP"class="form-control">
+      </div>
+      <div class="form-group">
+      Apellido Materno: <input type="text" name="ApellidoM"class="form-control">
+      </div>
+      <div class="form-group">
+      Correo: <input type="email" name="Correo" class="form-control">
+      </div>
+      <div class="form-group">
+      RFC: <input type="text" name="Rfc" class="form-control">
+      </div>
+      <div class="form-group">
+      Telefono: <input type="tel" name="Telefono"class="form-control">
+      </div>
+      <div class="form-group">
+      <!--<label for="Sexo"> Sexo: </label>
+      <label class="radio-inline"><input type="radio" name="optradio"> Masculino </label>
+      <label class="radio-inline"><input type="radio" name="optradio"> Femenino </label>-->
+      Sexo: <input type="text" name="Sexo" class="form-control">
+      </div>
+      <div class="form-group">
+      Fecha Ingreso: <input type="date" name="FechaIngreso" class="form-control">
+      </div>
+      <div class="form-group">
+      Cargo: <input type="text" name="Cargo" class="form-control">
+      </div>
+      <div class="form-group">
+      Salario: <input type="number" name="Salario" class="form-control">
+      </div>
+      <div class="form-group">
+      Estado Civil: <input type="text" name="EstadoCivil" class="form-control">
+      </div>
+      <div class="form-group">
+      NSS: <input type="text" name="Nss" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Agregar Empleado</button>
 
-  {% if agregado %}
-  <h3>Cliente Agregado</h3>
-  {% endif %}
-  </form>
+    {% if error %}
+      <h3>Debes mandar datos</h3>
+    {% endif %}
+
+    {% if agregado %}
+      <h3>Cliente Agregado</h3>
+    {% endif %}
+      </form>
   <table>
     <tr>
       <th>Nombre</th>
@@ -71,23 +72,23 @@
       <th>Estado Civil</th>
       <th>NSS</th>
     </tr>
-  {% for fila in empleados %}
-<tr>
-  <td>{{ fila.Nombre}}</td>
-  <td>{{ fila.ApellidoP}}</td>
-  <td>{{ fila.ApellidoM}}</td>
-  <td>{{ fila.Correo}}</td>
-  <td>{{ fila.Rfc}}</td>
-  <td>{{ fila.Telefono}}</td>
-  <td>{{ fila.Sexo}}</td>
-  <td>{{ fila.FechaIngreso}}</td>
-  <td>{{ fila.Cargo}}</td>
-  <td>{{ fila.Salario}}</td>
-  <td>{{ fila.EstadoCivil}}</td>
-  <td>{{ fila.Nss}}</td>
-</tr>
-{% endfor %}
-</table>
+      {% for fila in empleados %}
+    <tr>
+      <td>{{ fila.Nombre}}</td>
+      <td>{{ fila.ApellidoP}}</td>
+      <td>{{ fila.ApellidoM}}</td>
+      <td>{{ fila.Correo}}</td>
+      <td>{{ fila.Rfc}}</td>
+      <td>{{ fila.Telefono}}</td>
+      <td>{{ fila.Sexo}}</td>
+      <td>{{ fila.FechaIngreso}}</td>
+      <td>{{ fila.Cargo}}</td>
+      <td>{{ fila.Salario}}</td>
+      <td>{{ fila.EstadoCivil}}</td>
+      <td>{{ fila.Nss}}</td>
+    </tr>
+      {% endfor %}
+  </table>
 </section>
   {% include "Pie.html" %}
   </body>

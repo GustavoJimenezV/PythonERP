@@ -5,8 +5,8 @@
   </head>
   <body>
       {% include "menu.html" %}
-      <section>
-        <h3>Persona</h3>
+<section>
+    <h3>Persona</h3>
     <form action="" method="post">
       {% csrf_token %}
       <div class="form-group">
@@ -37,7 +37,7 @@
         Fecha de Nacimiento: <input type="date" name="FechaNacimiento" class="form-control"><br>
       </div>
       <button type="submit" class="btn btn-primary">Crear Usuario</button>
-      </form>
+
       {% if error %}
       <h3>Debes mandar datos</h3>
       {% endif %}
@@ -46,6 +46,7 @@
       <h3>Cliente Agregado</h3>
       {% endif %}
     </form>
+
       <table>
         <tr>
           <th>Nombre</th>
@@ -68,9 +69,9 @@
         <td>{{ fila.Sexo}}</td>
         <td>{{ fila.FechaNacimiento}}</td>
       </tr>
-      {% endfor %}
-    </table>
-    </section>
+        {% endfor %}
+      </table>
+</section>
     {% include "Pie.html" %}
   </body>
 </html>

@@ -4,33 +4,62 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="NombrePro"> Nombre Pro: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="TipoPro"> Tipo Proyecto: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="IdEmpleado"> Id Empleado: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="FechaIn"> Fecha Inicio: </label>
-    <input type="date" class="form-control">
-  </div>
-  <div class="form-group">
+      {% include "menu.html" %}
+<section>
+    <h3>Proyecto</h3>
+    <form action="" method="post">
+      {% csrf_token %}
+    <div class="form-group">
+    Nombre de Proyecto: <input type="text" name="NombrePro" class="form-control">
+    </div>
+    <div class="form-group">
+    Tipo de Proyecto: <input type="text" name="TipoProyecto" class="form-control">
+    </div>
+    <div class="form-group">
+    Id Empleado: <input type="text" name="IdEmpleado" class="form-control">
+    </div>
+    <div class="form-group">
+    Fecha de Inicio: <input type="date" name="FechaInicio" class="form-control">
+    </div>
+    <div class="form-group">
     <label for="FechaFin"> Fecha Final: </label>
-    <input type="date" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Descripcion"> Descripcion: </label>
-    <input type="text" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    Fecha Final: <input type="date" name="FechaFinal" class="form-control">
+    </div>
+    <div class="form-group">
+    Descripcion: <input type="text" name="Descripcion" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Proyecto</button>
+
+    {% if error %}
+      <h3>Debes mandar datos</h3>
+    {% endif %}
+
+    {% if agregado %}
+      <h3>Proyecto Agregado</h3>
+    {% endif %}
+    </form>
+
+    <table>
+        <tr>
+          <th>Nombre de Proyecto</th>
+          <th>Tipo de Proyecto</th>
+          <th>Id Empleado</th>
+          <th>Fecha de Inicio</th>
+          <th>Fecha Final</th>
+          <th>Descripcion</th>
+        </tr>
+        {% for fila in proyectos %}
+          <tr>
+            <td>{{ fila.NombrePro}}</td>
+            <td>{{ fila.TipoPro}}</td>
+            <td>{{ fila.IdEmpleado}}</td>
+            <td>{{ fila.FechaIn}}</td>
+            <td>{{ fila.FechaFin}}</td>
+            <td>{{ fila.Descripcion}}</td>
+          </tr>
+        {% endfor %}
+    </table>
+</section>
   {% include "Pie.html" %}
   </body>
 </html>

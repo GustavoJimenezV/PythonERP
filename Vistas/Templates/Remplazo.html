@@ -4,25 +4,51 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="IdMobiliario"> Id Mobiliario: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Fecha"> Fecha: </label>
-    <input type="date" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Costo"> Costo: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Descripcion"> Descripcion: </label>
-    <input type="text" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {% include "menu.html" %}
+<section>
+    <h3>Remplazo</h3>
+    <form action="" method="post">
+      {% csrf_token %}
+    <div class="form-group">
+    Id Mobiliario: <input type="text" name="IdMobiliario" class="form-control">
+    </div>
+    <div class="form-group">
+    Fecha: <input type="date" name="Fecha" class="form-control">
+    </div>
+    <div class="form-group">
+    Costo: <input type="number" name="Costo" class="form-control">
+    </div>
+    <div class="form-group">
+    Descripcion: <input type="text" name="Descripcion" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Crear Remplazo</button>
+
+    {% if error %}
+      <h3>Debes mandar datos</h3>
+    {% endif %}
+
+    {% if agregado %}
+      <h3>Remplazo Agregado</h3>
+    {% endif %}
+    </form>
+
+<table>
+      <tr>
+        <th>Id Mobiliario</th>
+        <th>Fecha</th>
+        <th>Costo</th>
+        <th>Descripcion</th>
+      </tr>
+    {% for fila in remplazos %}
+      <tr>
+        <td>{{ fila.IdMobiliario}}</td>
+        <td>{{ fila.Fecha}}</td>
+        <td>{{ fila.Costo}}</td>
+        <td>{{ fila.Descripcion}}</td>
+      </tr>
+    {% endfor %}
+</table>
+</section>
   {% include "Pie.html" %}
   </body>
 </html>

@@ -190,6 +190,12 @@ class Producto (models.Model):
     CantMin = models.FloatField(default=0)
     CantMax = models.FloatField(default=0)
     Categoria = models.IntegerField(default=0)
+    class Meta:
+        verbose_name = 'Producto'
+        verbose_name_plural = 'Productos'
+        ordering = ['Nombre']
+    def __str__(self):
+        return self.Nombre
 
 class Proveedor (models.Model):
     Nombre = models.CharField(max_length=50)
@@ -197,6 +203,12 @@ class Proveedor (models.Model):
     Direccion = models.CharField(max_length=50)
     Correo = models.CharField(max_length=30)
     Rfc = models.CharField(max_length=30)
+    class Meta:
+        verbose_name = 'Proveedor'
+        verbose_name_plural = 'Proveedores'
+        ordering = ['Nombre']
+    def __str__(self):
+        return self.Nombre
 
 class Proyecto (models.Model):
     NombrePro = models.CharField(max_length=20)
@@ -205,12 +217,24 @@ class Proyecto (models.Model):
     FechaIn = models.DateField()
     FechaFin = models.DateField()
     Descripcion = models.CharField(max_length=30)
+    class Meta:
+        verbose_name = 'Proyecto'
+        verbose_name_plural = 'Proyectos'
+        ordering = ['NombrePro']
+    def __str__(self):
+        return self.NombrePro
 
 class Remplazo (models.Model):
     IdMobiliario = models.IntegerField(default=0)
     Fecha = models.DateField()
     Costo = models.FloatField(default=0)
     Descripcion = models.CharField(max_length=200)
+    class Meta:
+        verbose_name = 'Remplazo'
+        verbose_name_plural = 'Remplazos'
+        ordering = ['Descripcion']
+    def __str__(self):
+        return self.Descripcion
 
 class Usuario (models.Model):
     Nombre = models.CharField(max_length=50)
@@ -228,3 +252,9 @@ class Venta (models.Model):
     IdCliente = models.IntegerField(default=0)
     Total = models.FloatField(default=0)
     TipoPago = models.IntegerField(default=0)
+    class Meta:
+        verbose_name = 'Venta'
+        verbose_name_plural = 'Ventas'
+        ordering = ['Fecha']
+    def __str__(self):
+        return self.Fecha
