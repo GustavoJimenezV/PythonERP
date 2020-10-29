@@ -7,6 +7,7 @@
       {% include "menu.html" %}
 <section>
       <h3>Materia Prima</h3>
+      <a href="/GraficaMateriaPrima/">Grafica</a>
       <form action="" method="post">
       {% csrf_token %}
       <div class="form-group">
@@ -51,6 +52,7 @@
           <td>{{ fila.Nombre}}</td>
           <td>{{ fila.Tipo}}</td>
           <td>{{ fila.Descripcion}}</td>
+          <td>{{ fila.Precio}}</td>
           <td>{{ fila.Stock}}</td>
           <td>{{ fila.Existencia}}</td>
         </tr>

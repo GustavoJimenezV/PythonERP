@@ -8,23 +8,23 @@
       {% include "menu.html" %}
       <script src="{% static 'Chart.min.js'%}"></script>
 <section>
-    <h3>Cliente</h3>
+    <h3>MATERIA PRIMA</h3>
     <canvas id="myChart"></canvas>
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'pie',
     data: {
         labels: [
-          {% for fila in clientes %}
+          {% for fila in materiaprimas %}
             '{{ fila.Nombre}}',
           {% endfor %}
         ],
         datasets: [{
-            label: 'Clientes',
+            label: 'MATERIA PRIMA',
             data: [
-              {% for fila in clientes %}
-                '{{ fila.Telefono}}',
+              {% for fila in materiaprimas %}
+                '{{ fila.Existencia}}',
               {% endfor %}
             ],
             backgroundColor: [

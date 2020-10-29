@@ -76,11 +76,6 @@ def MenuCliente(request):
         clientes = Cliente.objects.all()
         return render(request,"Cliente.html",{"clientes":clientes})
 
-def GraficaCliente(request):
-    objeto = Cliente()
-    clientes = Cliente.objects.all()
-    return render (request,"GraficaCliente.html",{"clientes":clientes})
-
 def MenuCompra(request):
     if request.POST:
         objeto = Compra()
@@ -94,6 +89,11 @@ def MenuCompra(request):
     else:
         compras = Compra.objects.all()
         return render(request,"Compra.html",{"compras":compras})
+
+def GraficaCompra(request):
+    objeto = Compra()
+    compras = Compra.objects.all()
+    return render (request,"GraficaCompra.html",{"compras":compras})
 
 def MenuDetalleCompra(request):
     if request.POST:
@@ -212,6 +212,11 @@ def MenuMateriaPrima(request):
         materiaprimas = MateriaPrima.objects.all()
         return render(request,"MateriaPrima.html",{"materiaprimas":materiaprimas})
 
+def GraficaMateriaPrima(request):
+    objeto = MateriaPrima()
+    materiaprimas = MateriaPrima.objects.all()
+    return render (request,"GraficaMateriaPrima.html",{"materiaprimas":materiaprimas})
+
 def MenuMobiliario(request):
     if request.POST:
         objeto = Mobiliario()
@@ -258,6 +263,11 @@ def MenuPedido(request):
         pedidos = Pedido.objects.all()
         return render(request,"Pedido.html",{"pedidos":pedidos})
 
+def GraficaPedido(request):
+    objeto = Pedido()
+    pedidos = Pedido.objects.all()
+    return render (request,"GraficaPedido.html",{"pedidos":pedidos})
+
 def Permiso(request):
     DocExterno = loader.get_template("Permiso.html")
     Documento = DocExterno.render()
@@ -270,6 +280,7 @@ def MenuProducto(request):
         objeto.Descripcion = request.POST["Descripcion"]
         objeto.PrecioV = request.POST["PrecioVenta"]
         objeto.PrecioC = request.POST["PrecioCompra"]
+        objeto.Cantidad = request.POST["Cantidad"]
         objeto.CantMin = request.POST["CantidadMin"]
         objeto.CantMax = request.POST["CantidadMax"]
         objeto.Categoria = request.POST["Categoria"]
@@ -280,6 +291,10 @@ def MenuProducto(request):
         productos = Producto.objects.all()
         return render(request,"Producto.html",{"productos":productos})
 
+def GraficaProducto(request):
+    objeto = Producto()
+    productos = Producto.objects.all()
+    return render (request,"GraficaProducto.html",{"productos":productos})
 
 def MenuProveedor(request):
     if request.POST:
@@ -350,3 +365,8 @@ def MenuVenta(request):
     else:
         ventas = Venta.objects.all()
         return render(request,"Venta.html",{"ventas":ventas})
+
+def GraficaVenta(request):
+    objeto = Venta()
+    ventas = Venta.objects.all()
+    return render (request,"GraficaVenta.html",{"ventas":ventas})
