@@ -4,29 +4,55 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="Nombre"> Nombre: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Descripcion"> Descripcion: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Cantidad"> Cantidad: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Nic"> Nic: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Tipo"> Tipo: </label>
-    <input type="text" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {% include "menu.html" %}
+<section>
+      <h3>Mobiliario</h3>
+      <form action="" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+      Nombre: <input type="text" name="Nombre" class="form-control">
+      </div>
+      <div class="form-group">
+      Descripcion: <input type="text" name="Descripcion" class="form-control">
+      </div>
+      <div class="form-group">
+      Cantidad: <input type="number" name="Cantidad" class="form-control">
+      </div>
+      <div class="form-group">
+      Nic: <input type="text" name="Nic" class="form-control">
+      </div>
+      <div class="form-group">
+      Tipo: <input type="text" name="Tipo" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Agregar Mobiliario</button>
+
+      {% if error %}
+        <h3>Debes completar los datos</h3>
+      {% endif %}
+
+      {% if agregado %}
+        <h3>Mobiliario Agregado</h3>
+      {% endif %}
+      </form>
+<table>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Cantidad</th>
+        <th>Nic</th>
+        <th>Tipo</th>
+      </tr>
+      {% for fila in mobiliarios %}
+      <tr>
+        <td>{{ fila.Nombre}}</td>
+        <td>{{ fila.Descripcion}}</td>
+        <td>{{ fila.Cantidad}}</td>
+        <td>{{ fila.Nic}}</td>
+        <td>{{ fila.Tipo}}</td>
+      </tr>
+      {% endfor %}
+</table>
+</section>
   {% include "Pie.html" %}
   </body>
 </html>

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Template,Context
 from django.template import loader
-from Vistas.models import Usuario,Cliente,Empleado,Proveedor,Venta,Remplazo,Proyecto,Producto
+from Vistas.models import *
 # Create your views here.
 def Login(request):
     if request.GET :
@@ -18,20 +18,45 @@ def Login(request):
         return render(request,"Login.html")
 
 
-def Actividad(request):
-    DocExterno = loader.get_template("Actividad.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuActividad(request):
+    if request.POST:
+        objeto = Actividad()
+        objeto.Registro = request.POST["Registro"]
+        objeto.IdUsuario = request.POST["IdUsuario"]
+        objeto.MovimientoAct = request.POST["MovimientoAct"]
+        objeto.MovimientoTabla = request.POST["MovimientoTabla"]
+        objeto.save()
+        actividades = Actividad.objects.all()
+        return render(request,"Actividad.html",{"agregado":"si","actividades":actividades})
+    else:
+        actividades = Actividad.objects.all()
+        return render(request,"Actividad.html",{"actividades":actividades})
 
-def Asistencia(request):
-    DocExterno = loader.get_template("Asistencia.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuAsistencia(request):
+    if request.POST:
+        objeto = Asistencia()
+        objeto.IdEmpleado = request.POST["IdEmpleado"]
+        objeto.Fecha = request.POST["Fecha"]
+        objeto.Hora = request.POST["Hora"]
+        objeto.save()
+        asistencias = Asistencia.objects.all()
+        return render(request,"Asistencia.html",{"agregado":"si","asistencias":asistencias})
+    else:
+        asistencias = Asistencia.objects.all()
+        return render(request,"Asistencia.html",{"asistencias":asistencias})
 
-def Balance(request):
-    DocExterno = loader.get_template("Balance.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuBalance(request):
+    if request.POST:
+        objeto = Balance()
+        objeto.Total = request.POST["Total"]
+        objeto.FechaFinal = request.POST["FechaFinal"]
+        objeto.FechaInicio = request.POST["FechaInicio"]
+        objeto.save()
+        balances = Balance.objects.all()
+        return render(request,"Balance.html",{"agregado":"si","balances":balances})
+    else:
+        balances = Balance.objects.all()
+        return render(request,"Balance.html",{"balances":balances})
 
 def MenuCliente(request):
     if request.POST:
@@ -51,21 +76,51 @@ def MenuCliente(request):
         clientes = Cliente.objects.all()
         return render(request,"Cliente.html",{"clientes":clientes})
 
+def GraficaCliente(request):
+    objeto = Cliente()
+    clientes = Cliente.objects.all()
+    return render (request,"GraficaCliente.html",{"clientes":clientes})
 
-def Compra(request):
-    DocExterno = loader.get_template("Compra.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuCompra(request):
+    if request.POST:
+        objeto = Compra()
+        objeto.Total = request.POST["Total"]
+        objeto.TipoPago = request.POST["TipoPago"]
+        objeto.IdCliente = request.POST["IdCliente"]
+        objeto.Fecha = request.POST["Fecha"]
+        objeto.save()
+        compras = Compra.objects.all()
+        return render(request,"Compra.html",{"agregado":"si","compras":compras})
+    else:
+        compras = Compra.objects.all()
+        return render(request,"Compra.html",{"compras":compras})
 
-def DetalleCompra(request):
-    DocExterno = loader.get_template("DetalleCompra.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuDetalleCompra(request):
+    if request.POST:
+        objeto = DetalleCompra()
+        objeto.IdMateriaPrima = request.POST["IdMateriaPrima"]
+        objeto.IdMateriaCompra = request.POST["IdMateriaCompra"]
+        objeto.Cantidad = request.POST["Cantidad"]
+        objeto.save()
+        detallecompras = DetalleCompra.objects.all()
+        return render(request,"DetalleCompra.html",{"agregado":"si","detallecompras":detallecompras})
+    else:
+        detallecompras = DetalleCompra.objects.all()
+        return render(request,"DetalleCompra.html",{"detallecompras":detallecompras})
 
-def Devoluciones(request):
-    DocExterno = loader.get_template("Devoluciones.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuDevolucion(request):
+    if request.POST:
+        objeto = Devolucion()
+        objeto.Cantidad = request.POST["Cantidad"]
+        objeto.Descripcion = request.POST["Descripcion"]
+        objeto.IdProducto = request.POST["IdProducto"]
+        objeto.Fecha = request.POST["Fecha"]
+        objeto.save()
+        devoluciones = Devolucion.objects.all()
+        return render(request,"Devolucion.html",{"agregado":"si","devoluciones":devoluciones})
+    else:
+        devoluciones = Devolucion.objects.all()
+        return render(request,"Devolucion.html",{"devoluciones":devoluciones})
 
 def MenuEmpleado(request):
     if request.POST:
@@ -89,40 +144,119 @@ def MenuEmpleado(request):
         empleados = Empleado.objects.all()
         return render(request,"Empleado.html",{"empleados":empleados})
 
-def Evaluacion(request):
-    DocExterno = loader.get_template("Evaluacion.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuEvaluacion(request):
+    if request.POST:
+        objeto = Evaluacion()
+        objeto.Tipo = request.POST["Tipo"]
+        objeto.Pregunta1 = request.POST["Pregunta1"]
+        objeto.Pregunta2 = request.POST["Pregunta2"]
+        objeto.Pregunta3 = request.POST["Pregunta3"]
+        objeto.Pregunta4 = request.POST["Pregunta4"]
+        objeto.Pregunta5 = request.POST["Pregunta5"]
+        objeto.Pregunta6 = request.POST["Pregunta6"]
+        objeto.Pregunta7 = request.POST["Pregunta7"]
+        objeto.Pregunta8 = request.POST["Pregunta8"]
+        objeto.Pregunta9 = request.POST["Pregunta9"]
+        objeto.Pregunta10 = request.POST["Pregunta10"]
+        objeto.save()
+        evaluaciones = Evaluacion.objects.all()
+        return render(request,"Evaluacion.html",{"agregado":"si","evaluaciones":evaluaciones})
+    else:
+        evaluaciones = Evaluacion.objects.all()
+        return render(request,"Evaluacion.html",{"evaluaciones":evaluaciones})
 
-def Jornada(request):
-    DocExterno = loader.get_template("Jornada.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuJornada(request):
+    if request.POST:
+        objeto = Jornada()
+        objeto.HorasTrabajadas = request.POST["HorasTrabajadas"]
+        objeto.DiasTrabajados = request.POST["DiasTrabajados"]
+        objeto.PagoHora = request.POST["PagoHora"]
+        objeto.HorasExtra = request.POST["HorasExtra"]
+        objeto.Bonos = request.POST["Bonos"]
+        objeto.IdEmpleado = request.POST["IdEmpleado"]
+        objeto.save()
+        jornadas = Jornada.objects.all()
+        return render(request,"Jornada.html",{"agregado":"si","jornadas":jornadas})
+    else:
+        jornadas = Jornada.objects.all()
+        return render(request,"Jornada.html",{"jornadas":jornadas})
 
-def Mantenimiento(request):
-    DocExterno = loader.get_template("Mantenimiento.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuMantenimiento(request):
+    if request.POST:
+        objeto = Mantenimiento()
+        objeto.FechaMan = request.POST["FechaMantenimiento"]
+        objeto.Area = request.POST["Area"]
+        objeto.IdMob = request.POST["IdMobiliario"]
+        objeto.CostoMan = request.POST["CostoMantenimiento"]
+        objeto.IdEmpleado = request.POST["IdEmpleado"]
+        objeto.save()
+        mantenimientos = Mantenimiento.objects.all()
+        return render(request,"Mantenimiento.html",{"agregado":"si","mantenimientos":mantenimientos})
+    else:
+        mantenimientos = Mantenimiento.objects.all()
+        return render(request,"Mantenimiento.html",{"mantenimientos":mantenimientos})
 
-def MateriaPrima(request):
-    DocExterno = loader.get_template("MateriaPrima.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuMateriaPrima(request):
+    if request.POST:
+        objeto = MateriaPrima()
+        objeto.Nombre = request.POST["Nombre"]
+        objeto.Tipo = request.POST["Tipo"]
+        objeto.Descripcion = request.POST["Descripcion"]
+        objeto.Precio = request.POST["Precio"]
+        objeto.Stock = request.POST["Stock"]
+        objeto.Existencia = request.POST["Existencia"]
+        objeto.save()
+        materiaprimas = MateriaPrima.objects.all()
+        return render(request,"MateriaPrima.html",{"agregado":"si","materiaprimas":materiaprimas})
+    else:
+        materiaprimas = MateriaPrima.objects.all()
+        return render(request,"MateriaPrima.html",{"materiaprimas":materiaprimas})
 
-def Mobiliario(request):
-    DocExterno = loader.get_template("Mobiliario.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuMobiliario(request):
+    if request.POST:
+        objeto = Mobiliario()
+        objeto.Nombre = request.POST["Nombre"]
+        objeto.Descripcion = request.POST["Descripcion"]
+        objeto.Cantidad = request.POST["Cantidad"]
+        objeto.Nic = request.POST["Nic"]
+        objeto.Tipo = request.POST["Tipo"]
+        objeto.save()
+        mobiliarios = Mobiliario.objects.all()
+        return render(request,"Moviliario.html",{"agregado":"si","mobiliarios":mobiliarios})
+    else:
+        mobiliarios = Mobiliario.objects.all()
+        return render(request,"Mobiliario.html",{"mobiliarios":mobiliarios})
 
-def Pago(request):
-    DocExterno = loader.get_template("Pago.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuPago(request):
+    if request.POST:
+        objeto = Pago()
+        objeto.IdEmpleado = request.POST["IdEmpleado"]
+        objeto.Sal = request.POST["Sal"]
+        objeto.FechaDep = request.POST["FechaDep"]
+        objeto.MetodoPago = request.POST["MetodoPago"]
+        objeto.Des = request.POST["Des"]
+        objeto.save()
+        pagos = Pago.objects.all()
+        return render(request,"Pago.html",{"agregado":"si","pagos":pagos})
+    else:
+        pagos = Pago.objects.all()
+        return render(request,"Pago.html",{"pagos":pagos})
 
-def Pedido(request):
-    DocExterno = loader.get_template("Pedido.html")
-    Documento = DocExterno.render()
-    return HttpResponse(Documento)
+def MenuPedido(request):
+    if request.POST:
+        objeto = Pedido()
+        objeto.Fecha = request.POST["Fecha"]
+        objeto.IdCliente = request.POST["IdCliente"]
+        objeto.Precio = request.POST["Precio"]
+        objeto.Cantidad = request.POST["Cantidad"]
+        objeto.Direccion = request.POST["Direccion"]
+        objeto.IdProducto = request.POST["IdProducto"]
+        objeto.save()
+        pedidos = Pedido.objects.all()
+        return render(request,"Pedido.html",{"agregado":"si","pedidos":pedidos})
+    else:
+        pedidos = Pedido.objects.all()
+        return render(request,"Pedido.html",{"pedidos":pedidos})
 
 def Permiso(request):
     DocExterno = loader.get_template("Permiso.html")

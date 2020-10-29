@@ -4,53 +4,85 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="Tipo"> Tipo: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Pregunta1"> Pregunta1: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Pregunta2"> Pregunta2: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Pregunta3"> Pregunta3: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Pregunta4"> Pregunta4: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Pregunta5"> Pregunta5: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Pregunta6"> Pregunta6: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Pregunta7"> Pregunta7: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Pregunta8"> Pregunta8: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Pregunta9"> Pregunta9: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Pregunta10"> Pregunta10: </label>
-    <input type="text" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {% include "menu.html" %}
+<section>
+            <h3>Evaluacion</h3>
+            <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+            Tipo: <input type="text" name="Tipo" class="form-control">
+            </div>
+            <div class="form-group">
+            Pregunta 1: <input type="text" name="Pregunta1" class="form-control">
+            </div>
+            <div class="form-group">
+            Pregunta 2: <input type="text" name="Pregunta2" class="form-control">
+            </div>
+            <div class="form-group">
+            Pregunta 3: <input type="text" name="Pregunta3" class="form-control">
+            </div>
+            <div class="form-group">
+            Pregunta 4: <input type="text" name="Pregunta4" class="form-control">
+            </div>
+            <div class="form-group">
+            Pregunta 5: <input type="text" name="Pregunta5" class="form-control">
+            </div>
+            <div class="form-group">
+            Pregunta 6: <input type="text" name="Pregunta6" class="form-control">
+            </div>
+            <div class="form-group">
+            Pregunta 7: <input type="text" name="Pregunta7" class="form-control">
+            </div>
+            <div class="form-group">
+            Pregunta 8: <input type="text" name="Pregunta8" class="form-control">
+            </div>
+            <div class="form-group">
+            Pregunta 9: <input type="text" name="Pregunta9" class="form-control">
+            </div>
+            <div class="form-group">
+            Pregunta 10: <input type="text" name="Pregunta10" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Evaluacion</button>
+
+              {% if error %}
+                <h3>Debes completar los datos</h3>
+              {% endif %}
+
+              {% if agregado %}
+                <h3>Evaluacion Agregada</h3>
+              {% endif %}
+              </form>
+        <table>
+              <tr>
+                <th>Tipo</th>
+                <th>Pregunta 1</th>
+                <th>Pregunta 2</th>
+                <th>Pregunta 3</th>
+                <th>Pregunta 4</th>
+                <th>Pregunta 5</th>
+                <th>Pregunta 6</th>
+                <th>Pregunta 7</th>
+                <th>Pregunta 8</th>
+                <th>Pregunta 9</th>
+                <th>Pregunta 10</th>
+              </tr>
+              {% for fila in evaluaciones %}
+              <tr>
+                <td>{{ fila.Tipo}}</td>
+                <td>{{ fila.Pregunta1}}</td>
+                <td>{{ fila.Pregunta2}}</td>
+                <td>{{ fila.Pregunta3}}</td>
+                <td>{{ fila.Pregunta4}}</td>
+                <td>{{ fila.Pregunta5}}</td>
+                <td>{{ fila.Pregunta6}}</td>
+                <td>{{ fila.Pregunta7}}</td>
+                <td>{{ fila.Pregunta8}}</td>
+                <td>{{ fila.Pregunta9}}</td>
+                <td>{{ fila.Pregunta10}}</td>
+              </tr>
+              {% endfor %}
+        </table>
+  </section>
   {% include "Pie.html" %}
   </body>
 </html>

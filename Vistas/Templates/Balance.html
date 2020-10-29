@@ -4,21 +4,45 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="FechaInicio"> Fecha Inicio </label>
-    <input type="date" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="FechaFinal"> Fecha Final</label>
-    <input type="date" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Hora"> Hora </label>
-    <input type="time" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {% include "menu.html" %}
+<section>
+    <h3>Balance</h3>
+    <form action="" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    Fecha de Inicio: <input type="date" name="FechaInicio" class="form-control">
+    </div>
+    <div class="form-group">
+    Fecha Final: <input type="date" name="FechaFinal" class="form-control">
+    </div>
+    <div class="form-group">
+    Total: <input type="number" name="Total" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Crear Balance</button>
+
+    {% if error %}
+      <h3>Debes completar los datos</h3>
+    {% endif %}
+
+    {% if agregado %}
+      <h3>Balance Realizada</h3>
+    {% endif %}
+  </form>
+      <table>
+        <tr>
+          <th>Fecha Inicio</th>
+          <th>Fecha Final</th>
+          <th>Total</th>
+        </tr>
+    {% for fila in balances %}
+      <tr>
+          <td>{{ fila.FechaInicio}}</td>
+          <td>{{ fila.FechaFinal}}</td>
+          <td>{{ fila.Total}}</td>
+      </tr>
+    {% endfor %}
+      </table>
+</section>
   {% include "Pie.html" %}
   </body>
 </html>

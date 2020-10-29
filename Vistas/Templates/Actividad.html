@@ -4,25 +4,50 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
+      {% include "menu.html" %}
+<section>
+    <h3>Actividad</h3>
+    <form action="" method="post">
+    {% csrf_token %}
   <div class="form-group">
-    <label for="Registro"> Registro </label>
-    <input type="text" class="form-control">
+    Registro: <input type="text" name="Registro" class="form-control">
   </div>
   <div class="form-group">
-    <label for="IdUsuario"> Id Usuario</label>
-    <input type="text" class="form-control">
+    Id Usuario: <input type="text" name="IdUsuario" class="form-control">
   </div>
   <div class="form-group">
-    <label for="MovAct"> Movimiento Act </label>
-    <input type="text" class="form-control">
+    Movimiento Actividad: <input type="text" name="MovimientoAct"class="form-control">
   </div>
   <div class="form-group">
-    <label for="MovTabla"> Movimiento Tabla </label>
-    <input type="text" class="form-control">
+    Movimiento Tabla: <input type="text" name="MovimientoTabla"class="form-control">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
+      {% if error %}
+        <h3>Debes completar los datos</h3>
+      {% endif %}
+
+      {% if agregado %}
+        <h3>Actividad Realizada</h3>
+      {% endif %}
+      </form>
+            <table>
+              <tr>
+                <th>Registro</th>
+                <th>Id Usuario</th>
+                <th>Movimiento Actividad</th>
+                <th>Movimiento Tabla</th>
+              </tr>
+          {% for fila in actividades %}
+            <tr>
+                <td>{{ fila.Registro}}</td>
+                <td>{{ fila.IdUsuario}}</td>
+                <td>{{ fila.MovimientoAct}}</td>
+                <td>{{ fila.MovimientoTabla}}</td>
+            </tr>
+          {% endfor %}
+            </table>
+</section>
     {% include "Pie.html" %}
   </body>
 </html>

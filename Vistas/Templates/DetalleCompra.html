@@ -4,21 +4,45 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="IdMateriaPrima"> Id MateriaPrima: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="IdCompra"> Id Compra: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Cantidad"> Cantidad: </label>
-    <input type="number" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {% include "menu.html" %}
+<section>
+    <h3>Detalle Compra</h3>
+    <form action="" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    Id Materia Prima: <input type="text" name="IdMateriaPrima" class="form-control">
+    </div>
+    <div class="form-group">
+    Id Materia Compra: <input type="text" name="IdMateriaCompra" class="form-control">
+    </div>
+    <div class="form-group">
+    Cantidad: <input type="number" name="Cantidad" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Realizar Detalle de Compra</button>
+
+    {% if error %}
+    <h3>Debes completar los datos</h3>
+    {% endif %}
+
+    {% if agregado %}
+      <h3>Detalle de Compra Realizada</h3>
+    {% endif %}
+      </form>
+        <table>
+            <tr>
+              <th>Id Materia Prima</th>
+                <th>Id Materia Prima</th>
+                <th>Cantidad</th>
+            </tr>
+          {% for fila in detallecompras %}
+            <tr>
+              <td>{{ fila.IdMateriaPrima}}</td>
+              <td>{{ fila.IdMateriaCompra}}</td>
+              <td>{{ fila.Cantidad}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+  </section>
   {% include "Pie.html" %}
   </body>
 </html>

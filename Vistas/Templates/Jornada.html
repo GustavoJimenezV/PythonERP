@@ -4,33 +4,60 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="Horas Trabajadas"> Horas Trabajadas: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Dias Trabajados"> Dias Trabajados: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Pago Hora"> Pago Hora: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Horas Extra"> Horas Extra: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Bonos"> Bonos: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="IdEmpleado"> Id Empleado: </label>
-    <input type="text" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {% include "menu.html" %}
+<section>
+            <h3>Jornada</h3>
+            <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+            Horas Trabajadas: <input type="number" name="HorasTrabajadas" class="form-control">
+            </div>
+            <div class="form-group">
+            Dias Trabajados: <input type="number" name="DiasTrabajados"class="form-control">
+            </div>
+            <div class="form-group">
+            Pago Hora: <input type="number" name="PagoHora" class="form-control">
+            </div>
+            <div class="form-group">
+            Horas Extra: <input type="number" name="HorasExtra"class="form-control">
+            </div>
+            <div class="form-group">
+            Bonos: <input type="number" name="Bonos"class="form-control">
+            </div>
+            <div class="form-group">
+            Id Empleado: <input type="text" name="IdEmpleado" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Jornada</button>
+
+            {% if error %}
+              <h3>Debes completar los datos</h3>
+            {% endif %}
+
+            {% if agregado %}
+              <h3>Jornada Agregada</h3>
+            {% endif %}
+            </form>
+      <table>
+            <tr>
+              <th>Horas Trabajadas</th>
+              <th>Dias Trabajados</th>
+              <th>Pago Hora</th>
+              <th>Horas Extra</th>
+              <th>Bonos</th>
+              <th>Id Empleado</th>
+            </tr>
+            {% for fila in jornadas %}
+            <tr>
+              <td>{{ fila.HorasTrabajadas}}</td>
+              <td>{{ fila.DiasTrabajados}}</td>
+              <td>{{ fila.PagoHora}}</td>
+              <td>{{ fila.HorasExtra}}</td>
+              <td>{{ fila.Bonos}}</td>
+              <td>{{ fila.IdEmpleado}}</td>
+            </tr>
+            {% endfor %}
+      </table>
+</section>
   {% include "Pie.html" %}
   </body>
 </html>

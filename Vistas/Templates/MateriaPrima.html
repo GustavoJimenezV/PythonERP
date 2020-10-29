@@ -2,37 +2,61 @@
 <html lang="es">
   <head>
     {% include "Encabezado.html" %}
-
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="Nombre"> Nombre: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Tipo"> Tipo: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Descripcion"> Descripcion: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Precio"> Precio: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Stock"> Stock: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Existencias"> Existencias: </label>
-    <input type="text" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {% include "menu.html" %}
+<section>
+      <h3>Materia Prima</h3>
+      <form action="" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+      Nombre: <input type="text" name="Nombre" class="form-control">
+      </div>
+      <div class="form-group">
+      Tipo: <input type="text" name="Tipo" class="form-control">
+      </div>
+      <div class="form-group">
+      Descripcion: <input type="text" name="Descripcion" class="form-control">
+      </div>
+      <div class="form-group">
+      Precio: <input type="number" name="Precio" class="form-control">
+      </div>
+      <div class="form-group">
+      Stock: <input type="text" name="Stock" class="form-control">
+      </div>
+      <div class="form-group">
+      Existencia: <input type="text" name="Existencia" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Materia Prima</button>
 
+        {% if error %}
+          <h3>Debes completar los datos</h3>
+        {% endif %}
+
+        {% if agregado %}
+          <h3>Materia Prima Agregado</h3>
+        {% endif %}
+        </form>
+  <table>
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Descripcion</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Existencia</th>
+        </tr>
+        {% for fila in materiaprimas %}
+        <tr>
+          <td>{{ fila.Nombre}}</td>
+          <td>{{ fila.Tipo}}</td>
+          <td>{{ fila.Descripcion}}</td>
+          <td>{{ fila.Stock}}</td>
+          <td>{{ fila.Existencia}}</td>
+        </tr>
+        {% endfor %}
+  </table>
+</section>
   {% include "Pie.html" %}
 
 </html>

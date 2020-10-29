@@ -4,29 +4,55 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="FechaMantenimiento "> Fecha Mantenimiento: </label>
-    <input type="date" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Area"> Area: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="IdMob"> Id Mob: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="CostoMantenimiento"> Costo Mantenimiento: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="IdEmpleado"> Id Empleado: </label>
-    <input type="input" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {% include "menu.html" %}
+<section>
+          <h3>Mantenimiento</h3>
+          <form action="" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+          Fecha de Mantenimiento: <input type="date" name="FechaMantenimiento" class="form-control">
+          </div>
+          <div class="form-group">
+          Area: <input type="text" name="Area"class="form-control">
+          </div>
+          <div class="form-group">
+          Id Mobiliario: <input type="text" name="IdMobiliario" class="form-control">
+          </div>
+          <div class="form-group">
+          Costo Mantenimiento: <input type="number" name="CostoMantenimiento" class="form-control">
+          </div>
+          <div class="form-group">
+          Id Empleado: <input type="input" name="IdEmpleado" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary"> Agregar Mantenimiento </button>
+
+          {% if error %}
+            <h3>Debes completar los datos</h3>
+          {% endif %}
+
+          {% if agregado %}
+            <h3>Mantenimiento Agregado</h3>
+          {% endif %}
+          </form>
+    <table>
+          <tr>
+            <th>Fecha de Mantenimiento</th>
+            <th>Area</th>
+            <th>Id Mobiliario</th>
+            <th>Costo Mantenimiento</th>
+            <th>Id Empleado</th>
+          </tr>
+          {% for fila in mantenimientos %}
+          <tr>
+            <td>{{ fila.FechaMan}}</td>
+            <td>{{ fila.Area}}</td>
+            <td>{{ fila.IdMob}}</td>
+            <td>{{ fila.CostoMan}}</td>
+            <td>{{ fila.IdEmpleado}}</td>
+          </tr>
+          {% endfor %}
+    </table>
+  </section>
   {% include "Pie.html" %}
   </body>
 </html>

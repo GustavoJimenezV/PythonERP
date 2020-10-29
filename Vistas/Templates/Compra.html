@@ -4,25 +4,50 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="Fecha"> Fecha: </label>
-    <input type="date" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Total"> Total: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="TipoPago"> Tipo de Pago: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="IdCliente"> Id Cliente: </label>
-    <input type="text" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {% include "menu.html" %}
+<section>
+    <h3>Compra</h3>
+    <form action="" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    Fecha: <input type="date" name="Fecha" class="form-control">
+    </div>
+    <div class="form-group">
+    Total: <input type="number" name="Total" class="form-control">
+    </div>
+    <div class="form-group">
+    Tipo de Pago: <input type="text" name="TipoPago" class="form-control">
+    </div>
+    <div class="form-group">
+    Id Cliente: <input type="text" name="IdCliente" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Compra</button>
+
+    {% if error %}
+      <h3>Debes completar los datos</h3>
+    {% endif %}
+
+    {% if agregado %}
+      <h3>Compra Realizada</h3>
+    {% endif %}
+    </form>
+      <table>
+          <tr>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Tipo de Pago</th>
+            <th>Id Cliente</th>
+          </tr>
+        {% for fila in compras %}
+          <tr>
+            <td>{{ fila.Fecha}}</td>
+            <td>{{ fila.Total}}</td>
+            <td>{{ fila.TipoPago}}</td>
+            <td>{{ fila.IdCliente}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+  </section>
   {% include "Pie.html" %}
   </body>
 </html>

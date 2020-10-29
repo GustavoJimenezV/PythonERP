@@ -4,33 +4,60 @@
     {% include "Encabezado.html" %}
   </head>
   <body>
-    <form>
-  <div class="form-group">
-    <label for="Fecha"> Fecha: </label>
-    <input type="Date" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="IdCliente"> Id Cliente: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Precio"> Precio: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Cantidad"> Cantidad: </label>
-    <input type="number" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="Direccion"> Direccion: </label>
-    <input type="text" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="IdProducto"> Id Producto: </label>
-    <input type="text" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-  {% include "Pie.html" %}
+      {% include "menu.html" %}
+<section>
+      <h3>Pedido</h3>
+      <form action="" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+      Fecha: <input type="Date" name="Fecha" class="form-control">
+      </div>
+      <div class="form-group">
+      Id Cliente: <input type="text" name="IdCliente" class="form-control">
+      </div>
+      <div class="form-group">
+      Precio: <input type="number" name="Precio" class="form-control">
+      </div>
+      <div class="form-group">
+      Cantidad: <input type="number" name="Cantidad" class="form-control">
+      </div>
+      <div class="form-group">
+      Direccion: <input type="text" name="Direccion" class="form-control">
+      </div>
+      <div class="form-group">
+      Id Producto: <input type="text" name="IdProducto" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Pedido</button>
+
+      {% if error %}
+        <h3>Debes completar los datos</h3>
+      {% endif %}
+
+      {% if agregado %}
+        <h3>Producto Agregado</h3>
+      {% endif %}
+      </form>
+    <table>
+        <tr>
+          <th>Fecha</th>
+          <th>Id Cliente</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Direccion</th>
+          <th>Id Producto</th>
+        </tr>
+          {% for fila in pedidos %}
+        <tr>
+          <td>{{ fila.Fecha}}</td>
+          <td>{{ fila.IdCliente}}</td>
+          <td>{{ fila.Precio}}</td>
+          <td>{{ fila.Cantidad}}</td>
+          <td>{{ fila.Direccion}}</td>
+          <td>{{ fila.IdProducto}}</td>
+        </tr>
+          {% endfor %}
+    </table>
+  </section>
+    {% include "Pie.html" %}
   </body>
 </html>
