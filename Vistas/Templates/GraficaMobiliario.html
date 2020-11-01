@@ -16,14 +16,14 @@ var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: [
-          {% for fila in pedidos %}
-            '{{ fila.Fecha}}',
+          {% for fila in mobiliarios %}
+            '{{ fila.Nombre}}',
           {% endfor %}
         ],
         datasets: [{
             label: 'PEDIDO',
             data: [
-              {% for fila in pedidos %}
+              {% for fila in mobiliarios %}
                 '{{ fila.Cantidad}}',
               {% endfor %}
             ],

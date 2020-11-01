@@ -4,9 +4,7 @@
   padding: 0;
 }
 body{
-  background: #2193b0;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #808080;
   color: black;
   padding: 3rem;
 }
@@ -49,7 +47,7 @@ section{
 nav{
 	background-color: #333;
 	display: inline-block;
-	height: 100vh;
+	height: 120vh;
 	vertical-align: top;
 	width: 20%;
 }
@@ -75,7 +73,7 @@ td{
 	padding: 0.3em;
 }
 tr:nth-child(odd){
-	background-color: #006;
+	background-color: #333;
 	color: white;
 }
 tr:nth-child(even){
@@ -86,4 +84,8 @@ tr:nth-child(even){
   background-color: white;
   margin: 1rem auto;
   max-width: 70%;
+}
+a{
+    background-color: #333;
+	color: white;
 }

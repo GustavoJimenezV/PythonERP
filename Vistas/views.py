@@ -227,10 +227,15 @@ def MenuMobiliario(request):
         objeto.Tipo = request.POST["Tipo"]
         objeto.save()
         mobiliarios = Mobiliario.objects.all()
-        return render(request,"Moviliario.html",{"agregado":"si","mobiliarios":mobiliarios})
+        return render(request,"Mobiliario.html",{"agregado":"si","mobiliarios":mobiliarios})
     else:
         mobiliarios = Mobiliario.objects.all()
         return render(request,"Mobiliario.html",{"mobiliarios":mobiliarios})
+
+def GraficaMobiliario(request):
+    objeto = Mobiliario()
+    mobiliarios = Mobiliario.objects.all()
+    return render (request,"GraficaMobiliario.html",{"mobiliarios":mobiliarios})
 
 def MenuPago(request):
     if request.POST:
@@ -263,12 +268,7 @@ def MenuPedido(request):
         pedidos = Pedido.objects.all()
         return render(request,"Pedido.html",{"pedidos":pedidos})
 
-def GraficaPedido(request):
-    objeto = Pedido()
-    pedidos = Pedido.objects.all()
-    return render (request,"GraficaPedido.html",{"pedidos":pedidos})
-
-def Permiso(request):
+def MenuPermiso(request):
     DocExterno = loader.get_template("Permiso.html")
     Documento = DocExterno.render()
     return HttpResponse(Documento)
