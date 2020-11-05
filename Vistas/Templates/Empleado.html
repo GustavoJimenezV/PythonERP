@@ -7,6 +7,7 @@
       {% include "menu.html" %}
 <section>
       <h3>Empleado</h3>
+      <input type="button" id="Imprimir" value="Imprimir">
       <form class="" method="post">
       <div class="form-group">
       Nombre: <input type="text" name="Nombre" class="form-control">
@@ -90,6 +91,16 @@
       {% endfor %}
   </table>
 </section>
+<script>
+    window.onload=function(){
+        var boton=document.getElementById("Imprimir");
+        boton.addEventListener("click",Imprimir);
+    }
+
+    function Imprimir(){
+        window.print();
+    }
+</script>
   {% include "Pie.html" %}
   </body>
 </html>

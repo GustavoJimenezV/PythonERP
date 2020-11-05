@@ -7,6 +7,7 @@
       {% include "menu.html" %}
 <section>
     <h3>Balance</h3>
+    <input type="button" id="Imprimir" value="Imprimir">
     <form action="" method="post">
     {% csrf_token %}
     <div class="form-group">
@@ -43,6 +44,16 @@
     {% endfor %}
       </table>
 </section>
+<script>
+    window.onload=function(){
+        var boton=document.getElementById("Imprimir");
+        boton.addEventListener("click",Imprimir);
+    }
+
+    function Imprimir(){
+        window.print();
+    }
+</script>
   {% include "Pie.html" %}
   </body>
 </html>

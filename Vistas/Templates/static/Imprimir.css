@@ -1,0 +1,9 @@
+*{
+    -webkit-print-color-adjust: exact;
+}
+nav,form,input,a{
+    display: none;
+}
+section{
+    width: 100%;
+}
